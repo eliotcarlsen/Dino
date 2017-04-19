@@ -1,22 +1,18 @@
-var Calculator = require('./../js/pingpong.js').calculatorModule;
+var Dino = require('./../js/dino.js').dinoModule;
+var displayOutput = function (outputData){
+  $('#output').text(outputData);
+};
 
 $(document).ready(function(){
-  $('form#pingpong-form').submit(function(event){
+  $('form#form').submit(function(event){
     event.preventDefault();
-    var goal = parseInt($('input#goal').val());
-    var simpleCalculator = new Calculator ("hot pink");
-    var output = simpleCalculator.pingpong(goal);
-    output.forEach(function(element){
-      $('#solution').append("<li>" + element + "</li>");
-    });
+    var para = parseInt($('#para').val());
+    var word = parseInt($('#word').val());
+    var newDino = new Dino();
+    newDino.output(para,word,displayOutput);
   });
 });
 
 $(document).ready(function(){
-  $('form#signup').submit(function(event){
-    event.preventDefault();
-    var email = $('#email').val();
-    $('form#signup').hide();
-    $('#solution').prepend('<p>Thank you, ' + email + ' has been added to our list!</p>');
-  });
+  $('#time').text(moment());
 });
